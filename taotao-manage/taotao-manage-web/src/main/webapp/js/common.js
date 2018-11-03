@@ -75,12 +75,13 @@ var TT = TAOTAO = {
         			}
         		}
         	}
-        	$(e).click(function(){
+        	$(e).unbind('click').click(function(){
+        		//找到距离按钮最近的一个form对象，但找到的不包含这个最近的form本身
         		var form = $(this).parentsUntil("form").parent("form");
         		KindEditor.editor(TT.kingEditorParams).loadPlugin('multiimage',function(){
         			var editor = this;
         			editor.plugin.multiImageDialog({
-						clickFn : function(urlList) {
+						clickFn : function(urlList) {//点击全部插入时所用
 							var imgArray = [];
 							KindEditor.each(urlList, function(i, data) {
 								imgArray.push(data.url);
